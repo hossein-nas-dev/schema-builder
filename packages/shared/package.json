@@ -1,0 +1,41 @@
+{
+  "name": "@schema-builder/shared",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "files": [
+    "dist",
+    "dist/@typing"
+  ],
+  "main": "./dist/shared.js",
+  "module": "./dist/shared.js",
+  "types": "./dist/@typing/main.d.ts",
+  "typings": "./dist/@typing/main.d.ts",
+  "exports": {
+    "node": "./dist/shared.js",
+    "types": "./dist/@typing/main.d.ts",
+    "import": "./dist/shared.js",
+    "require": "./dist/shared.umd.cjs",
+    "default": "./dist/shared.js"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p ./tsconfig.json && vite build && tsc -p ./tsconfig.types.json && tsc-alias -p ./tsconfig.types.json",
+    "bundle:types": "dts-bundle-generator -o ./index.d.ts ./src/main.ts",
+    "watch": "nodemon -w src -w lib -e ts,tsx,js,jsx -x 'yarn build'"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "dts-bundle-generator": "^8.1.0",
+    "nodemon": "^3.0.1",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.11"
+  },
+  "volta": {
+    "node": "16.20.2",
+    "yarn": "1.22.19"
+  },
+  "dependencies": {
+    "tsc-alias": "^1.8.8"
+  }
+}

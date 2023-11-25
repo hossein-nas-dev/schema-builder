@@ -1,0 +1,23 @@
+{
+  "name": "schema-builder",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "scripts": {
+    "start:shared": "yarn workspace @schema-builder/shared watch",
+    "start:app": "yarn workspace @schema-builder/app dev",
+    "start": "concurrently --kill-others-on-fail \"yarn start:shared\"  \"yarn start:app\""
+  },
+  "volta": {
+    "node": "16.20.2",
+    "yarn": "1.22.19"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
