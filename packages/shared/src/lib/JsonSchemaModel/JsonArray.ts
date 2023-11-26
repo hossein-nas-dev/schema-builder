@@ -1,15 +1,15 @@
-import { JsonSchemaElement } from "@/lib/";
-import { JsonSchemaTypes } from "@/lib/JsonSchema/JsonSchemaBase";
+import { JsonSchemaTypes } from "../JsonSchema/JsonSchemaBase";
+import { JsonSchemaElement } from "./JsonSchemaElement";
 
 type Payload = {
   type: JsonSchemaTypes;
-  items: JsonSchemaElement;
+  items: JsonSchemaElement | undefined;
   minItems?: number;
   maxItems?: number;
 };
 
 export class JsonArray extends JsonSchemaElement {
-  items: JsonSchemaElement;
+  items: JsonSchemaElement | undefined;
   minItems?: number;
   maxItems?: number;
 

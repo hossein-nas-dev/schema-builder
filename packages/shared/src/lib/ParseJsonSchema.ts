@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   JsonObject,
   JsonArray,
@@ -7,12 +6,12 @@ import {
   JsonNumber,
   JsonString,
   JsonSchemaElement,
-} from "@/lib/JsonSchemaModel";
-import { JsonSchema } from "@/lib/JsonSchema";
+} from "./JsonSchemaModel";
+import type { JsonSchema } from "./JsonSchema";
 
 export function parseJsonSchema(
   jsonSchema: string | JsonSchema
-): JsonSchemaElement {
+): JsonSchemaElement | undefined {
   let schemaObject: Record<string, unknown> | JsonSchema;
   if (typeof jsonSchema === "string") {
     schemaObject = JSON.parse(jsonSchema);
@@ -25,7 +24,7 @@ export function parseJsonSchema(
 
 function parseSchemaElement<T extends JsonSchema | undefined>(
   payload: T
-): JsonSchemaElement {
+): JsonSchemaElement | undefined {
   let schemaElement: T = { type: undefined } as unknown as Exclude<
     T,
     undefined
@@ -42,6 +41,7 @@ function parseSchemaElement<T extends JsonSchema | undefined>(
     const propertyDependencies: { [key: string]: JsonSchemaElement } =
       schemaElement.propertyDependencies || {};
     const allOf: JsonSchemaElement[] | undefined = parseArray(
+      // @ts-ignore
       schemaElement.allOf
     );
     const anyOf: JsonSchemaElement[] | undefined = parseArray(
@@ -88,7 +88,10 @@ function parseSchemaElement<T extends JsonSchema | undefined>(
       maxLength: schemaElement.maxLength,
       format: schemaElement.format,
     });
-  } else if (schemaElement.type === "number") {
+  } else if (
+    schemaElement.type === "number" ||
+    schemaElement.type === "integer"
+  ) {
     return new JsonNumber({
       type: schemaElement.type,
       minimum: schemaElement.minimum,
@@ -103,10 +106,14 @@ function parseSchemaElement<T extends JsonSchema | undefined>(
     return new JsonNull(schemaElement.type);
   }
 
+  alert(JSON.stringify(schemaElement));
+
   // Handle additional types or throw an error for unsupported types
-  throw new Error(`Unsupported schema type: ${schemaElement.type}`);
+  return undefined;
 }
 
 function parseArray(array: any[] | undefined): JsonSchemaElement[] | undefined {
-  return Array.isArray(array) ? array.map(parseSchemaElement) : undefined;
+  return Array.isArray(array)
+    ? (array.map(parseSchemaElement).filter(Boolean) as JsonSchemaElement[])
+    : undefined;
 }

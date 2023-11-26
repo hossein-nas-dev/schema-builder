@@ -1,21 +1,17 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
+    "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
     "baseUrl": ".",
-    "noEmit": true,
+    "noEmit": false,
+    "outDir": "./dist",
+    "moduleResolution": "Bundler",
     "paths": {
       "@/*": ["./src/*"]
     },
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
 
     /* Linting */
     "strict": true,

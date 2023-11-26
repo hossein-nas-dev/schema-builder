@@ -7,17 +7,19 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src/"),
     },
   },
+
+  optimizeDeps: {
+    disabled: false,
+  },
   build: {
+    commonjsOptions: {
+      include: [],
+    },
     lib: {
       entry: "./src/main.ts",
       name: "Shared",
       fileName: "shared",
-      formats: ["es", "cjs", "umd"],
-    },
-    rollupOptions: {
-      output: {
-        exports: "named",
-      },
+      formats: ["cjs", "es"],
     },
   },
 });

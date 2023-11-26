@@ -11,7 +11,8 @@
   "scripts": {
     "start:shared": "yarn workspace @schema-builder/shared watch",
     "start:app": "yarn workspace @schema-builder/app dev",
-    "start": "concurrently --kill-others-on-fail \"yarn start:shared\"  \"yarn start:app\""
+    "start": "concurrently --kill-others-on-fail \"yarn start:shared\"  \"yarn start:app\"",
+    "start-old": "npm run start:shared && npm run start:app"
   },
   "volta": {
     "node": "16.20.2",

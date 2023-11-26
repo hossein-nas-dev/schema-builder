@@ -13,6 +13,7 @@ export type JsonSchemaTypes =
   | "array"
   | "boolean"
   | "number"
+  | "integer"
   | "null";
 
 export interface JsonSchemaBase {

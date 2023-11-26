@@ -1,5 +1,5 @@
-import { JsonSchemaElement } from "@/lib";
-import { JsonSchemaTypes } from "@/lib/JsonSchema/JsonSchemaBase";
+import { JsonSchemaTypes } from "../JsonSchema/JsonSchemaBase";
+import { JsonSchemaElement } from "./JsonSchemaElement";
 
 type Payload = {
   type: JsonSchemaTypes;

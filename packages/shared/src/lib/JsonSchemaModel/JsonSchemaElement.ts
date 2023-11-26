@@ -1,4 +1,4 @@
-import { JsonSchemaTypes } from "@/lib/JsonSchema/JsonSchemaBase";
+import { JsonSchemaTypes } from "../JsonSchema/JsonSchemaBase";
 
 export class JsonSchemaElement {
   private type: JsonSchemaTypes;

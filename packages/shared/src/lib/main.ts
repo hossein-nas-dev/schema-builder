@@ -1,6 +1,7 @@
 import { parseJsonSchema } from "./ParseJsonSchema";
 
-const jsonSchema = `{
+export default function () {
+  const jsonSchema = `{
   "title": "A registration form",
   "description": "A simple form example.",
   "type": "object",
@@ -38,10 +39,8 @@ const jsonSchema = `{
     }
   }
 }`;
-const jsClassModel = parseJsonSchema(jsonSchema);
+  const jsClassModel = parseJsonSchema(jsonSchema);
+  console.log({ jsClassModel });
 
-console.log({ jsClassModel });
-
-debugger;
-
-// export { parseJsonSchema };
+  return jsonSchema;
+}

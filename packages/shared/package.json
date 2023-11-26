@@ -4,23 +4,20 @@
   "version": "1.0.0",
   "type": "module",
   "files": [
-    "dist",
-    "dist/@typing"
+    "dist"
   ],
-  "main": "./dist/shared.js",
-  "module": "./dist/shared.js",
+  "main": "./dist/main.js",
+  "module": "./dist/main.js",
   "types": "./dist/@typing/main.d.ts",
   "typings": "./dist/@typing/main.d.ts",
   "exports": {
-    "node": "./dist/shared.js",
-    "types": "./dist/@typing/main.d.ts",
-    "import": "./dist/shared.js",
-    "require": "./dist/shared.umd.cjs",
-    "default": "./dist/shared.js"
+    "default": "./dist/main.js",
+    "import": "./dist/main.js",
+    "types": "./dist/@typing/main.d.ts"
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -p ./tsconfig.json && vite build && tsc -p ./tsconfig.types.json && tsc-alias -p ./tsconfig.types.json",
+    "build": "rm -rf ./dist && tsc -p ./tsconfig.json && tsc -p ./tsconfig.types.json && tsc-alias -p ./tsconfig.types.json",
     "bundle:types": "dts-bundle-generator -o ./index.d.ts ./src/main.ts",
     "watch": "nodemon -w src -w lib -e ts,tsx,js,jsx -x 'yarn build'"
   },
